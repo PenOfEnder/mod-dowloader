@@ -1,0 +1,34 @@
+{
+    "mod_name": "Mod Menu",
+    "mod_slug": "modmenu",
+    "icon_url": "https://cdn.modrinth.com/data/mOgUt4GM/1bfe2006b38340e9d064700e41adf84a8abb1bd4_96.webp",
+    "description": "Adds a mod menu to view the list of mods you have installed.",
+    "version_id": "e0mxOOIE",
+    "file_name": "modmenu-16.0.0-rc.1.jar",
+    "loaders": [
+        "fabric",
+        "quilt"
+    ],
+    "mc_versions": [
+        "1.21.9",
+        "1.21.10-rc1",
+        "1.21.10"
+    ]
+},
+{
+    "mod_name": "Mod Menu",
+    "mod_slug": "modmenu",
+    "icon_url": "https://cdn.modrinth.com/data/mOgUt4GM/1bfe2006b38340e9d064700e41adf84a8abb1bd4_96.webp",
+    "description": "Adds a mod menu to view the list of mods you have installed.",
+    "version_id": "e0mxOOIE",
+    "file_name": "modmenu-16.0.0-rc.1.jar",
+    "loaders": [
+        "fabric",
+        "quilt"
+    ],
+    "mc_versions": [
+        "1.21.9",
+        "1.21.10-rc1",
+        "1.21.10"
+    ]
+}

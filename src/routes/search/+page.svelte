@@ -18,7 +18,6 @@
 
     import { modListStore } from "$utils/mods.svelte.js";
     import mod_template from "$utils/mod_template.js";
-    import { VITE_USER_AGENT } from "$env/static/public";
 
     const loaders = {
         fabric: false,
@@ -175,7 +174,7 @@
         const MODRINTH_URL = "https://api.modrinth.com/v2";
         const headers = {
             "User-Agent":
-                VITE_USER_AGENT ||
+                import.meta.env.VITE_USER_AGENT ||
                 "ModrinthDowloader/1.0 (contact@example.com)",
             "Content-Type": "application/json",
         };

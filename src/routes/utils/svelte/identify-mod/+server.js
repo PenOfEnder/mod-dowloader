@@ -1,7 +1,8 @@
 // src/routes/api/identificar-mod/+server.js
 import { json } from '@sveltejs/kit';
+import { VITE_USER_AGENT } from '$env/static/private';
 
-const USER_AGENT = 'ModrinthDowloader/1.0 (bryanjsypenofender@gmail.com)';
+const USER_AGENT = VITE_USER_AGENT || 'ModrinthDowloader/1.0 (contact@example.com)';
 
 export async function POST({ request }) {
     try {

@@ -18,6 +18,7 @@
 
     import { modListStore } from "$utils/mods.svelte.js";
     import mod_template from "$utils/mod_template.js";
+    import { VITE_USER_AGENT } from "$env/static/public";
 
     const loaders = {
         fabric: false,
@@ -38,7 +39,7 @@
      * @param {object} headers - Headers para las peticiones HTTP
      * @param {string} MODRINTH_URL - URL base de la API de Modrinth
      * @returns {Promise<object>} El objeto del mod actualizado
-    */
+     */
     async function searchAndUpdateMod(
         modObject,
         index,
@@ -174,7 +175,8 @@
         const MODRINTH_URL = "https://api.modrinth.com/v2";
         const headers = {
             "User-Agent":
-                "ModrinthDowloader/1.0 (bryanjsypenofender@gmail.com)",
+                VITE_USER_AGENT ||
+                "ModrinthDowloader/1.0 (contact@example.com)",
             "Content-Type": "application/json",
         };
 

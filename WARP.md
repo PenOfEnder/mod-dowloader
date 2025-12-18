@@ -3,7 +3,7 @@
 This file provides guidance to WARP (warp.dev) when working with code in this repository.
 
 ## Project Overview
-**mod-dowloader** is a SvelteKit web application for managing and downloading Minecraft mods from Modrinth. The app allows users to list mods, identify mods from JAR files using SHA-1 hashing, and export/import mod lists as JSON.
+**Bryan.js's Mod Downloader** is a SvelteKit web application for managing and downloading Minecraft mods from Modrinth. The app allows users to list mods, identify mods from JAR files using SHA-1 hashing, and export/import mod lists as JSON.
 
 ## Technology Stack
 - **Framework**: SvelteKit 2.x with Svelte 5.x

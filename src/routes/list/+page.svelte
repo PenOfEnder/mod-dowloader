@@ -155,7 +155,7 @@
         modalOpen = true;
     }
 
-    function exportMessage(){
+    function exportMessage() {
         modalConfig = {
             title: "Lista exportada correctamente",
             message: "",
@@ -179,6 +179,11 @@
     import ArrowRightIcon from "$lib/svg_icons/arrow_right.svelte";
     import ZapIcon from "$lib/svg_icons/zap.svelte";
 </script>
+
+<svelte:head>
+    <title>Listar Mods - Mod Downloader</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon-list.svg" />
+</svelte:head>
 
 <main
     class="flex flex-col items-center justify-center w-full h-screen bg-linear-to-r from-main-green-300 to-main-green-500"

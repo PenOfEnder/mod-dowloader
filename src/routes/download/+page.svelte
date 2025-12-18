@@ -189,6 +189,11 @@
     }
 </script>
 
+<svelte:head>
+    <title>Descargar Mods - Mod Downloader</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon-download.svg" />
+</svelte:head>
+
 <main
     class="flex flex-col items-center justify-center w-full h-screen bg-linear-to-r from-main-green-700 to-main-green-900"
 >
@@ -220,65 +225,66 @@
                     <p
                         class="w-4/10 flex items-center justify-around gap-2 p-2"
                     >
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <!-- svelte-ignore a11y-no-static-element-interactions -->
                         <span
-                            class="flex flex-col flex-1 justify-center items-center gap-2"
+                            class="icon-checkbox flex flex-col flex-1 justify-center items-center gap-2 p-2 rounded-md cursor-pointer transition-all duration-300 ease-in-out {loaders.fabric
+                                ? 'bg-main-green-700'
+                                : 'bg-transparent'}"
+                            on:click={() => (loaders.fabric = !loaders.fabric)}
                         >
-                            <label
-                                for="fabric"
-                                class="flex items-center justify-center"
-                            >
-                                <FabricIcon size="32px" color="#edfcf6" />
-                            </label>
+                            <FabricIcon size="32px" color="#edfcf6" />
                             <input
-                                class="outline-none"
+                                class="hidden"
                                 type="checkbox"
                                 id="fabric"
                                 bind:checked={loaders.fabric}
                             />
                         </span>
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <!-- svelte-ignore a11y-no-static-element-interactions -->
                         <span
-                            class=" h-full flex flex-col flex-1 justify-center items-center gap-2"
+                            class="icon-checkbox h-full flex flex-col flex-1 justify-center items-center gap-2 p-2 rounded-md cursor-pointer transition-all duration-300 ease-in-out {loaders.forge
+                                ? 'bg-main-green-700'
+                                : 'bg-transparent'}"
+                            on:click={() => (loaders.forge = !loaders.forge)}
                         >
-                            <label
-                                for="forge"
-                                class="flex items-center justify-center"
-                            >
-                                <ForgeIcon size="32px" color="#edfcf6" />
-                            </label>
+                            <ForgeIcon size="32px" color="#edfcf6" />
                             <input
-                                class="outline-none"
+                                class="hidden"
                                 type="checkbox"
                                 id="forge"
                                 bind:checked={loaders.forge}
                             />
                         </span>
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <!-- svelte-ignore a11y-no-static-element-interactions -->
                         <span
-                            class="h-full flex flex-col flex-1 justify-center items-center gap-2"
+                            class="icon-checkbox h-full flex flex-col flex-1 justify-center items-center gap-2 p-2 rounded-md cursor-pointer transition-all duration-300 ease-in-out {loaders.quilt
+                                ? 'bg-main-green-700'
+                                : 'bg-transparent'}"
+                            on:click={() => (loaders.quilt = !loaders.quilt)}
                         >
-                            <label
-                                for="quilt"
-                                class="flex items-center justify-center"
-                            >
-                                <QuiltIcon size="32px" color="#edfcf6" />
-                            </label>
+                            <QuiltIcon size="32px" color="#edfcf6" />
                             <input
-                                class="outline-none"
+                                class="hidden"
                                 type="checkbox"
                                 id="quilt"
                                 bind:checked={loaders.quilt}
                             />
                         </span>
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <!-- svelte-ignore a11y-no-static-element-interactions -->
                         <span
-                            class="h-full flex flex-col flex-1 justify-center items-center gap-2"
+                            class="icon-checkbox h-full flex flex-col flex-1 justify-center items-center gap-2 p-2 rounded-md cursor-pointer transition-all duration-300 ease-in-out {loaders.neoforge
+                                ? 'bg-main-green-700'
+                                : 'bg-transparent'}"
+                            on:click={() =>
+                                (loaders.neoforge = !loaders.neoforge)}
                         >
-                            <label
-                                for="neoforge"
-                                class="flex items-center justify-center"
-                            >
-                                <NeoForgeIcon size="32px" color="#edfcf6" />
-                            </label>
+                            <NeoForgeIcon size="32px" color="#edfcf6" />
                             <input
-                                class="outline-none"
+                                class="hidden"
                                 type="checkbox"
                                 id="neoforge"
                                 bind:checked={loaders.neoforge}
@@ -368,8 +374,7 @@
 
 <style>
     cside a,
-    cside button,
-    cside label {
+    cside button {
         cursor: pointer;
         transition: all 0.3s ease-in-out;
         padding: 0.5rem;
@@ -382,5 +387,13 @@
 
     cside button:hover {
         transform: scale(1.5);
+    }
+
+    .icon-checkbox:hover {
+        transform: scale(1.05);
+    }
+
+    .icon-checkbox:active {
+        transform: scale(0.95);
     }
 </style>

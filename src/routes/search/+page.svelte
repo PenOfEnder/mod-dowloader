@@ -157,28 +157,54 @@
     }
 
     async function findMods(params) {
-        loadingModalOpen = true;
+        // Validar que haya mods en la lista
         if (!(modListStore.mods.length > 0)) {
+            modalConfig = {
+                title: "Error",
+                message: "No hay mods en la lista para buscar.",
+                type: "error",
+                onConfirm: () => {},
+            };
+            modalOpen = true;
             return;
         }
 
-        console.log("Mods guardados: " + JSON.stringify(modListStore.mods));
-
+        // Preparar array de loaders
         const loadersArray = [];
         if (loaders.fabric) loadersArray.push("fabric");
         if (loaders.forge) loadersArray.push("forge");
         if (loaders.quilt) loadersArray.push("quilt");
         if (loaders.neoforge) loadersArray.push("neoforge");
 
+        // Validar que haya al menos un loader seleccionado
         if (loadersArray.length === 0) {
-            console.log("⚠️ Debes seleccionar al menos un loader");
+            modalConfig = {
+                title: "Error",
+                message:
+                    "Debes seleccionar al menos un loader antes de buscar.",
+                type: "error",
+                onConfirm: () => {},
+            };
+            modalOpen = true;
             return;
         }
 
+        // Validar que haya una versión del juego seleccionada
         if (!gameVersion) {
-            console.log("⚠️ Debes seleccionar una versión del juego");
+            modalConfig = {
+                title: "Error",
+                message:
+                    "Debes seleccionar una versión del juego antes de buscar.",
+                type: "error",
+                onConfirm: () => {},
+            };
+            modalOpen = true;
             return;
         }
+
+        // Si todas las validaciones pasan, abrir el modal de carga
+        loadingModalOpen = true;
+        console.log("Mods guardados: " + JSON.stringify(modListStore.mods));
 
         const MODRINTH_URL = "https://api.modrinth.com/v2";
         const headers = {
@@ -292,6 +318,11 @@
     };
 </script>
 
+<svelte:head>
+    <title>Buscar Mods - Mod Downloader</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon-search.svg" />
+</svelte:head>
+
 <main
     class="flex flex-col items-center justify-center w-full h-screen bg-linear-to-r from-main-green-500 to-main-green-700"
 >
@@ -315,65 +346,65 @@
 
             <aside class="w-1/3 flex items-center justify-between gap-4">
                 <p class="w-full flex items-center justify-around gap-2 p-2">
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <!-- svelte-ignore a11y-no-static-element-interactions -->
                     <span
-                        class="flex flex-col flex-1 justify-center items-center gap-2"
+                        class="icon-checkbox flex flex-col flex-1 justify-center items-center gap-2 p-2 rounded-md cursor-pointer transition-all duration-300 ease-in-out {loaders.fabric
+                            ? 'bg-main-green-700'
+                            : 'bg-transparent'}"
+                        on:click={() => (loaders.fabric = !loaders.fabric)}
                     >
-                        <label
-                            for="fabric"
-                            class="flex items-center justify-center"
-                        >
-                            <FabricIcon size="32px" color="#042a23" />
-                        </label>
+                        <FabricIcon size="32px" color="#042a23" />
                         <input
-                            class="outline-none"
+                            class="hidden"
                             type="checkbox"
                             id="fabric"
                             bind:checked={loaders.fabric}
                         />
                     </span>
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <!-- svelte-ignore a11y-no-static-element-interactions -->
                     <span
-                        class=" h-full flex flex-col flex-1 justify-center items-center gap-2"
+                        class="icon-checkbox h-full flex flex-col flex-1 justify-center items-center gap-2 p-2 rounded-md cursor-pointer transition-all duration-300 ease-in-out {loaders.forge
+                            ? 'bg-main-green-700'
+                            : 'bg-transparent'}"
+                        on:click={() => (loaders.forge = !loaders.forge)}
                     >
-                        <label
-                            for="forge"
-                            class="flex items-center justify-center"
-                        >
-                            <ForgeIcon size="32px" color="#042a23" />
-                        </label>
+                        <ForgeIcon size="32px" color="#042a23" />
                         <input
-                            class="outline-none"
+                            class="hidden"
                             type="checkbox"
                             id="forge"
                             bind:checked={loaders.forge}
                         />
                     </span>
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <!-- svelte-ignore a11y-no-static-element-interactions -->
                     <span
-                        class="h-full flex flex-col flex-1 justify-center items-center gap-2"
+                        class="icon-checkbox h-full flex flex-col flex-1 justify-center items-center gap-2 p-2 rounded-md cursor-pointer transition-all duration-300 ease-in-out {loaders.quilt
+                            ? 'bg-main-green-700'
+                            : 'bg-transparent'}"
+                        on:click={() => (loaders.quilt = !loaders.quilt)}
                     >
-                        <label
-                            for="quilt"
-                            class="flex items-center justify-center"
-                        >
-                            <QuiltIcon size="32px" color="#042a23" />
-                        </label>
+                        <QuiltIcon size="32px" color="#042a23" />
                         <input
-                            class="outline-none"
+                            class="hidden"
                             type="checkbox"
                             id="quilt"
                             bind:checked={loaders.quilt}
                         />
                     </span>
+                    <!-- svelte-ignore a11y-click-events-have-key-events -->
+                    <!-- svelte-ignore a11y-no-static-element-interactions -->
                     <span
-                        class="h-full flex flex-col flex-1 justify-center items-center gap-2"
+                        class="icon-checkbox h-full flex flex-col flex-1 justify-center items-center gap-2 p-2 rounded-md cursor-pointer transition-all duration-300 ease-in-out {loaders.neoforge
+                            ? 'bg-main-green-700'
+                            : 'bg-transparent'}"
+                        on:click={() => (loaders.neoforge = !loaders.neoforge)}
                     >
-                        <label
-                            for="neoforge"
-                            class="flex items-center justify-center"
-                        >
-                            <NeoForgeIcon size="32px" color="#042a23" />
-                        </label>
+                        <NeoForgeIcon size="32px" color="#042a23" />
                         <input
-                            class="outline-none"
+                            class="hidden"
                             type="checkbox"
                             id="neoforge"
                             bind:checked={loaders.neoforge}
@@ -390,6 +421,7 @@
                     id="version"
                     bind:value={gameVersion}
                 >
+                    <option class="hidden" disabled value="">Elige</option>
                     <option
                         class="outline-none border-none rounded-0 text-main-green-900 hover:text-main-green-950 bg-main-green-400 hover:bg-main-green-500"
                         value="1.21.11">1.21.11</option
@@ -409,7 +441,7 @@
                 </select>
 
                 <button
-                    class="text-2xl outline-none hover:bg-main-green-900 bg-main-green-700 duration-500 ease-in-out text-main-green-300 font-bold py-1 px-2 rounded"
+                    class="text-2xl outline-none hover:bg-main-green-950 bg-main-green-800 duration-500 ease-in-out text-main-green-300 font-bold py-1 px-2 rounded"
                     on:click={findMods}
                 >
                     Buscar
@@ -423,7 +455,7 @@
                 <li
                     class="select-none w-full h-min text-xl flex items-center justify-between p-2 gap-4 text-main-green-900"
                 >
-                    <div class="w-1/3 gap-2 flex items-center justify-between">
+                    <div class="w-1/3 h-full gap-2 flex items-center justify-between">
                         <span
                             class="w-min h-min aspect-square bg-main-green-50 rounded-md p-2"
                             >{index + 1}</span
@@ -438,7 +470,7 @@
                         class="w-full h-full flex items-center justify-around gap-2 bg-main-green-50 p-2 rounded-md"
                     >
                         <li
-                            class="flex-1 flex items-center justify-start text-left"
+                            class="flex-1  flex items-center justify-start text-left"
                         >
                             {#if typeof li_mod.loaders.fabric === "object"}
                                 <span
@@ -452,7 +484,7 @@
                             {/if}
                         </li>
                         <li
-                            class="flex-1 flex items-center justify-start text-left"
+                            class="flex-1  flex items-center justify-start text-left"
                         >
                             {#if typeof li_mod.loaders.forge === "object"}
                                 <span
@@ -466,7 +498,7 @@
                             {/if}
                         </li>
                         <li
-                            class="flex-1 flex items-center justify-start text-left"
+                            class="flex-1  flex items-center justify-start text-left"
                         >
                             {#if typeof li_mod.loaders.neoforge === "object"}
                                 <span
@@ -480,7 +512,7 @@
                             {/if}
                         </li>
                         <li
-                            class="flex-1 flex items-center justify-start text-left"
+                            class="flex-1  flex items-center justify-start text-left"
                         >
                             {#if typeof li_mod.loaders.quilt === "object"}
                                 <span
@@ -551,7 +583,7 @@
         </section>
     </toolbar>
     <div class="w-full py-2">
-        <Footer />
+        <Footer color="text-cyan-100 text-xl" />
     </div>
 </main>
 
@@ -581,5 +613,13 @@
         transition: all 0.3s ease-in-out;
         padding: 0.5rem;
         border-radius: 0.5rem;
+    }
+
+    .icon-checkbox:hover {
+        transform: scale(1.05);
+    }
+
+    .icon-checkbox:active {
+        transform: scale(0.95);
     }
 </style>

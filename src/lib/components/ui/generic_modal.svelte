@@ -82,7 +82,7 @@
 
 {#if isOpen}
     <section
-        class="modal-backdrop w-full h-full backdrop-brightness-70 fixed inset-0 z-50 flex items-center justify-center"
+        class="modal-backdrop w-full h-full fixed inset-0 z-50 flex items-center justify-center"
         on:click={handleCancel}
         on:keydown={(e) => e.key === "Escape" && handleCancel()}
         role="dialog"
